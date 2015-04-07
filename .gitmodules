@@ -1,0 +1,3 @@
+[submodule "button/scripts"]
+	path = button/scripts
+	url = https://github.com/sifatsultan/scripts
