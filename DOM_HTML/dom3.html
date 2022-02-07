@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<script>
-function validateForm() {
-  let x = document.forms["myForm"]["fname"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-}
-</script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function validateForm(){
+      let fname = document.forms["form1"]["fname"].value
+      if(fname == ""){
+        alert("First name should not be empty");
+        return false;
+      }
+    }
+  </script>
 </head>
 <body>
-
-<h2>JavaScript Validation</h2>
-
-<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
-  Name: <input type="text" name="fname">
-  <input type="submit" value="Submit">
-</form>
-
+  <form id="form1" action="/some_action.php" onsubmit="return validateForm()">
+    First Name <input type="text" name="fname"> <br>
+    <input type="submit" value="Submit">
+  </form>
 </body>
 </html>
