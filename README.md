@@ -3,3 +3,5 @@ All the things regarding javascript :)
 
 ##  Learnig Resources
 [Asynchronous JavaScript](https://www.w3schools.com/js/js_asynchronous.asp)
+
+[DOM Forms](https://www.w3schools.com/js/js_validation.asp)
