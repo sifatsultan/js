@@ -1,0 +1,32 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+</head>
+
+<body>
+
+  <div id="main">
+      <h1>This is header 1</h1>
+      <h2></h2>
+      <h2></h2>
+      <h2></h2>
+  </div>
+
+
+  <script>
+    const mainDiv = document.getElementById("main");
+    const h2Elements = mainDiv.getElementsByTagName("h2");
+    h2Elements[0].innerHTML = "This is dynamic header 2"
+    for (let index = 0; index < h2Elements.length; index++) {
+        const element = h2Elements[index];
+        element.innerHTML = `This is dynamic header ${index}`
+        
+    }
+  </script>
+</body>
+
+</html>
