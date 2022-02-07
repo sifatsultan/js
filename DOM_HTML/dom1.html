@@ -1,0 +1,28 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img src="tree.jpg" id="myImage" alt="">
+
+    <script>
+        let isSwitch = true
+
+        setInterval(() => {
+            if (isSwitch) {
+                document.getElementById("myImage").src = "landscape.jpg"
+            } else {
+                document.getElementById("myImage").src = "tree.jpg"
+            }
+            isSwitch = !isSwitch;
+            console.log(isSwitch);
+        }, 1000);
+    </script>
+</body>
+
+</html>
