@@ -11,10 +11,8 @@ async function processFileAsync() {
     })
   })
 
-   filePromise.then(
-    function(value){`The file was fetched sucessfully ${value}`},
-    function(err){`The file could not be fetched successfully ${err}`}
-  );
+   const result = await filePromise;
+   console.log(result)
 
 }
 
