@@ -6,15 +6,15 @@ function displayFileContent(fileData){
 
 function getFile(fileHandler){
     let req = new XMLHttpRequest();
-    req.open('GET','myCar.html');
-    req.onreadystatechange(function(){
+    req.onreadystatechange = function(){
         if(req.status == 200){
             fileHandler(this.responseText);
         }else{
             fileHandler("Error: " + req.status)
         }
-    })
+    };
 
+    req.open('GET','myCar.html', true);
     req.send();
 }
 
