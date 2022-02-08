@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <script>
+        const demo = document.getElementById("demo")
+
+        let demoContent = "Cookie enabled: "+navigator.cookieEnabled + "<br>"
+        demoContent += "App name is : "+navigator.appName + "<br>"
+        demoContent += "App code name is : "+navigator.appCodeName + "<br>"
+        demoContent += "Browser engine is : "+navigator.product + "<br>"
+        demoContent += "Browser version is : "+navigator.appVersion + "<br>"
+        demoContent += "Browser agent is : "+navigator.userAgent + "<br>"
+        demoContent += "Browser platform is : "+navigator.platform + "<br>"
+        demoContent += "Browser language is : "+navigator.language  + "<br>"
+        demoContent += "Browser online status : "+navigator.onLine  + "<br>"
+        demoContent += "Is Java enabled : "+navigator.javaEnabled  + "<br>"
+        
+
+        demo.innerHTML = demoContent;
+
+    </script>
+</body>
+</html>
