@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="demo"></p>
+    <button onclick="newDoc()">Load new page</button>
+    <script>
+        const demo = document.getElementById("demo")
+
+        demo.innerHTML = "Page location is "+window.location.href 
+        demo.innerHTML += "<br> Page hostname is "+window.location.hostname
+        demo.innerHTML += "<br> Pathname is "+window.location.pathname
+        demo.innerHTML += "<br> Protocol is "+window.location.protocol
+        demo.innerHTML += "<br> Port number is "+window.location.port
+
+        function newDoc(){
+            window.location.assign("https://www.w3schools.com")
+
+        }
+
+
+    </script>
+</body>
+</html>
