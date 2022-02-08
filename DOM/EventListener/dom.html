@@ -6,26 +6,34 @@
     <title>Document</title>
 </head>
 <body>
-    <h1 id="firstHeader">Hover over here</h1>
-    <h1 id="secondHeader">Click over here</h1>
-    <h1 id="thirdHeader">Move your mouse over here</h1>
+    <h1 id="firstHeader">Shabab</h1>
+    <h3 id="countInfo"></h3>
+    <button type="submit" onclick="clearLog()">Clear</button>
     <p id="eventLog"></p>
 
     <script>
+        let count = 0
         const firstHeader = document.getElementById("firstHeader")
         const secondHeader = document.getElementById("secondHeader")
         const thirdHeader = document.getElementById("thirdHeader")
+        const countInfo = document.getElementById("countInfo")
         const eventLog = document.getElementById("eventLog")
 
 
-        function changeText(){
-            eventLog.innerHTML += "Ola <br>"
+        function changeText(text){
+            count++
+            countInfo.innerHTML = count
+            eventLog.innerHTML += `${text} <br>`
+        }
+
+        function clearLog(){
+            eventLog.innerHTML = ""
         }
 
 
-        firstHeader.addEventListener("mouseover", changeText)
-        secondHeader.addEventListener("click", changeText)
-        thirdHeader.addEventListener("mouseover", changeText)
+        firstHeader.addEventListener("mouseover", ()=>{changeText("Assalamu")})
+        firstHeader.addEventListener("mouseout", ()=>{changeText("Alaikum")})
+        firstHeader.addEventListener("click", ()=>{changeText("Keifak")})
 
     </script>
 </body>
