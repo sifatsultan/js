@@ -1,0 +1,71 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Facebook Bazaar</h1>
+    <p id="uName"></p>
+
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            let d = new Date()
+            d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000)
+            let expiryDate = d.toUTCString()
+            console.log("About to set cookie with cname " + cname + " and cvalue " + cvalue);
+            let cookieContent =
+                cname + "=" + cvalue + ";expires=" + expiryDate
+                + "path=/;"
+
+            console.log("About to set cookie content to " + cookieContent);
+
+            document.cookie = cookieContent
+
+            console.log("Cookie created: " + document.cookie);
+
+        }
+
+        function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+
+                // if the item has a space in front
+                // then trim the space
+                if (c.charAt(0) == ' ') {
+                    c = c.subString(1)
+                }
+
+                //to will avoid cases where the cookie item 
+                //has the cname as a value rather than a key
+                if (c.indexOf(name) == 0) {
+                    //get the value only
+                    return c.subString(name.length, c.length)
+                }
+            }
+        }
+
+        function checkCookie() {
+            let user = getCookie("username");
+            if (user != "" && user != undefined) {
+                alert("Welcome again " + user)
+            } else {
+                user = prompt("Please enter your name: ", "")
+                if (user != "" && user != null) {
+                    setCookie("username", user, 365)                 
+                }
+            }
+        }
+
+        checkCookie()
+
+
+    </script>
+</body>
+
+</html>
