@@ -12,6 +12,8 @@
     <input type="number" name="id1" id="id1" min="100" max="300" required>
     <button onclick="validateContainerInput()">OK</button>
     <button onclick="validateIfNumberTooLarge()">Check if value too large</button>
+    <button onclick="goBack()">Go back</button>
+    <button onclick="goBackMore()">Go back more</button>
 
     <p id="demo"></p>
 
@@ -42,6 +44,28 @@
                     .innerHTML = "";
             }
         }
+
+
+        function goBack(){
+            window.history.back()
+        }
+
+        function goBack() {
+            window.history.go(-2)
+        }
+
+        localStorage.setItem("name", "Sifat Sultan")
+        const stName = localStorage.getItem("name")
+        console.log(stName);
+
+
+
+        sessionStorage.setItem("name","Sifat Sultan")
+        const sesName = sessionStorage.getItem("name")
+        console.log(sesName);
+
+
+
 
     </script>
 </body>
