@@ -7,6 +7,12 @@
         {
             "type": "pwa-chrome",
             "request": "launch",
+            "name": "Employee Manager",
+            "file": "C:\\Users\\zdtf1686\\src\\Experiment\\js\\projects\\employee_manager\\index.html"
+        },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
             "name": "Open send.html",
             "file": "c:\\Users\\zdtf1686\\src\\Experiment\\js\\ajax\\send.html"
         }
