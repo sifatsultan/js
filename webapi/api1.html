@@ -1,0 +1,49 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label for="id1">Container: </label>
+    <input type="number" name="id1" id="id1" min="100" max="300" required>
+    <button onclick="validateContainerInput()">OK</button>
+    <button onclick="validateIfNumberTooLarge()">Check if value too large</button>
+
+    <p id="demo"></p>
+
+
+    <script>
+        function validateContainerInput() {
+            const containerInput = document.getElementById("id1");
+            if (!containerInput.checkValidity()) {
+                document.getElementById("demo").innerHTML = containerInput.validationMessage;
+            }
+        }
+
+
+        function validateIfNumberTooLarge() {
+            const containerInput = document.getElementById("id1");
+            const demoElement = document
+                .getElementById("demo")
+
+            if (containerInput.validity.rangeOverflow) {
+                demoElement
+                    .innerHTML = "Value too large";
+            } else if (containerInput.validity.rangeUnderflow) {
+                demoElement
+                    .innerHTML = "Value too small";
+            }
+            else {
+                demoElement
+                    .innerHTML = "";
+            }
+        }
+
+    </script>
+</body>
+
+</html>
