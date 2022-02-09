@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        function displayEmployees(xmlHttp) {
+
+            const empl = JSON.parse(xmlHttp.response)
+            for (let i = 0; i < empl.data.length; i++) {
+                const e = empl.data[i];
+                console.log("Email: " + e.email + " First Name: " + e.first_name + " Last Name: " + e.last_name);
+            }
+        }
+
+        function displayAllInformation(xmlHttp){
+            console.log(xmlHttp.getAllResponseHeaders())
+            console.log(xmlHttp.getResponseHeader("Last-Modified"))
+        }
+
+        let x = new XMLHttpRequest();
+        x.open("GET", "https://reqres.in/api/users?page=")
+        // x.onload = ()=>{displayEmployees(x)}
+        x.onload = ()=>{displayAllInformation(x)}
+        x.send()
+    </script>
+</body>
+
+</html>

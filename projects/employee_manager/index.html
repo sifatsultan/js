@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Portal</title>
+    <link rel="stylesheet" href="styles/css/bootstrap.min.css" />
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Employee Portal</h1>
+
+        <div>
+            <form id="form1" method="post">
+                <label>Recipe Name</label> <input type="text" name="rname" id="rname"> <br>
+                <label>Cuisine Name</label> <input type="text" name="cuisine" id="cname" value=""><br>
+                <label>Serves</label> <input type="text" name="serves" id="serves"><br>
+                <label>Cook Duration</label> <input type="text" name="Recipe Name" id="duration"><br>
+            </form>
+            <input type="button" onclick="addRecipe()" value="Add a recipe">
+        </div>
+
+
+        <div>
+            <table id="recipes">
+                <thead>
+                    <th>Recipe Name</th>
+                    <th>Cuisine Name</th>
+                    <th>Serves</th>
+                    <th>Cook Duration</th>
+                </thead>
+                <tbody id="recipeBody">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+    <script>
+        let id = 0;
+        let debug = document.getElementById("debug")
+
+        let recipes = []
+        
+        function addRecipe() {
+
+            let cuisineName = document.getElementById("cname").value
+            let serves = document.getElementById("serves").value
+            let timing = document.getElementById("duration").value
+            let recipeName = document.getElementById("rname").value
+
+            let recipe = {
+                "id": id,
+                "name": recipeName,
+                "serves": serves,
+                "timing": timing,
+                "cuisineName": cuisineName
+            };
+
+            //increment id for the next recipe
+            id++
+
+            //store recipe inside recipes list
+            recipes.push(recipe);
+
+
+            //reset the form values for the 
+            //next item to be added
+            cuisineName = "";
+            serves = "";
+            timing = "";
+            recipeName = "";
+
+            console.log(recipe);
+
+
+            appendAndDisplayRecipe(recipe);
+
+        }
+
+        let recipeBody = document.getElementById("recipeBody")
+
+        function appendAndDisplayRecipe(recipe) {
+
+            let recipeRow = document.createElement("tr")
+            recipeBody.appendChild(recipeRow)
+
+            // add recipe name
+            let recipeNameColumn = document.createElement("td")
+            recipeNameColumn.innerText = recipe.name
+            recipeRow.appendChild(recipeNameColumn)
+
+            
+            // add recipe name
+            let cuisineNameColumn = document.createElement("td")
+            cuisineNameColumn.innerText = recipe.cuisineName
+            recipeRow.appendChild(cuisineNameColumn)
+
+            // add serving
+            let servingColumn = document.createElement("td")
+            servingColumn.innerText = recipe.serves
+            recipeRow.appendChild(servingColumn)
+
+            // add duration
+            let timingColumn = document.createElement("td")
+            timingColumn.innerText = recipe.timing
+            recipeRow.appendChild(timingColumn)
+
+            
+        }
+
+
+    </script>
+
+</body>
+
+</html>
