@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Employee Detail</title>
+</head>
+<body>
+    <!-- header with name
+    
+    table with different properties
+
+    button to back to main page -->
+    <h1 id="fullname"></h1>
+    <p id="email"></p>
+    <img id="avatar">
+    <button onclick="goBack()">Go Back</button>
+    
+    <script>
+        // get employee id
+        var params = new URLSearchParams(window.location.search)
+        console.log(window.location.search)
+        var employeeId = params.get("employeeID")
+        console.log(employeeId);
+        getEmployeeDetail(employeeId)
+
+        function goBack(){
+            window.history.back()
+        }
+
+        
+        function displayEmployeeDetail(employeeDetail) {
+            
+            let fullname = document.getElementById("fullname")
+            fullname.innerText = employeeDetail.first_name + " " + employeeDetail.last_name
+            
+            let email = document.getElementById("email")
+            email.innerText = employeeDetail.email
+
+            let avatar = document.getElementById("avatar")
+            avatar.setAttribute("src",employeeDetail.avatar)
+
+        }
+
+
+        function parseEmployeeDetail(xhttp){
+            var resultJson = JSON.parse(xhttp.response)
+            var employeeDetail = resultJson.data
+            
+            console.log(employeeDetail)
+            displayEmployeeDetail(employeeDetail)
+        }
+        //get employees from api
+        function getEmployeeDetail(employeeID) {
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GET","https://reqres.in/api/users/"+employeeID)
+            xhttp.onload = () => {parseEmployeeDetail(xhttp)}
+            xhttp.send()
+        }
+
+    </script>
+</body>
+</html>

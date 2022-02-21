@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee Portal</title>
-    <link rel="stylesheet" href="styles/css/bootstrap.min.css" />
 
 </head>
 
@@ -36,6 +35,8 @@
         let page = 1
         let tbodyElement = document.getElementById("empTableBody")
 
+        var rootPath = '/projects/employee_manager'
+
 
         //iterate and form table            
         function displayEmployeeToTable(employee) {
@@ -48,24 +49,32 @@
             tdElement1.innerText = employee.id
             trElement.appendChild(tdElement1)
 
-
             // create and append fist name
             let tdElement2 = document.createElement("td")
             tdElement2.innerText = employee.first_name
             trElement.appendChild(tdElement2)
-
 
             // create and append last name
             let tdElement3 = document.createElement("td")
             tdElement3.innerText = employee.last_name
             trElement.appendChild(tdElement3)
 
-
             // create and append email
             let tdEelement4 = document.createElement("td")
             tdEelement4.innerText = employee.email
             trElement.appendChild(tdEelement4)
 
+            //create an anchor link
+            var params = new URLSearchParams();
+            params.append("employeeID",employee.id)
+
+            var employeeDetailAnchorLink = document.createElement("a")
+            var employeeDetailAnchorLinkText = document.createTextNode("Detail")
+            employeeDetailAnchorLink.appendChild(employeeDetailAnchorLinkText)
+            employeeDetailAnchorLink.href = rootPath+"/employee_detail.html?"+params.toString()
+            
+            trElement.appendChild(employeeDetailAnchorLink);
+            
         }
 
 
@@ -73,12 +82,13 @@
         function getEmployees(page) {
             let xhttp = new XMLHttpRequest();
             xhttp.open("GET", "https://reqres.in/api/users?page=" + page + "")
-            xhttp.onload = () => { displayEmployeeInformation(xhttp) }
+            xhttp.onload = () => { displayAllEmployeeInformation(xhttp) }
             xhttp.send()
         }
 
+
         //parse it
-        function displayEmployeeInformation(xhttp) {
+        function displayAllEmployeeInformation(xhttp) {
             var resultJson = JSON.parse(xhttp.response)
             var employees = resultJson.data
 
@@ -89,15 +99,15 @@
         }
 
         function goNext() {
+
+            let maxPage = 6
             // get current page info
-            if (page < 6) {
+            // increment page number until maximum page number
+            if (page < maxPage) {
                 page++;
             }
             
             getEmployees(page)
-            // then go to the next page
-            // if it the last page then do not go to the next page
-            //
         }
 
         getEmployees(page);

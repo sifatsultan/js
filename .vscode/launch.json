@@ -4,12 +4,19 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Employee Manager",
             "file": "C:\\Users\\zdtf1686\\src\\Experiment\\js\\projects\\employee_manager\\index.html"
         },
+        {
+            "type": "pwa-chrome",
+            "request": "launch",
+            "name": "Employee Detail",
+            "file": "C:\\Users\\zdtf1686\\src\\Experiment\\js\\projects\\employee_manager\\employee_detail.html"
+        }, 
         {
             "type": "pwa-chrome",
             "request": "launch",
