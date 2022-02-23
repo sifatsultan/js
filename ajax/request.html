@@ -1,0 +1,64 @@
+<!-- 
+    To send a request the open() and send() method of XMLHttp object is used
+    The url parameter of the open method is the address of the file in the server which could txt or server scripting files like php, html, asp which can process files in the server before sending response back
+    Request should be sent as async so that script does not have to wait for the response to come back and instead do other things while the response comes back
+        If the server is busy then the application will hang and stop
+    
+    GET is simpler, faster and can be used in most cases
+    POST is to be used
+        sending user input
+        sending large amount of data
+        cache file is not option
+
+
+    Avoid cache by adding a unique ID to the URL
+    Send information in GET by adding the information in the URL as parameters
+
+ -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax XMLHttp Request</title>
+</head>
+<body>
+
+    <script>
+        let API_URL = "http://someurl.com"
+
+        /*
+        POST request
+        ---
+        Set the http header using the setRequestHeader() method
+        Set the parameter information using the send() method
+        */
+
+        let xhttp = new XMLHttpRequest()
+        xhttp.open("POST", API_URL)
+        xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+        xhttp.send("fname=Henry&lname=Ford")
+
+
+        /*
+        Synchronous Function
+        ---
+        To make a function synchronous, set the third parameter to false
+        In case of sync request there is no need to define callback function
+        */ 
+
+        let xhttp1= new XMLHttpRequest()
+        xhttp1.open("GET", API_URL, false)
+        xhttp1.send()
+
+        var jsonObj = JSON.parse(xhttp1.response)
+        var jsonData = jsonObj.data
+        let demo = document.getElementById("demo")
+        demo.innerText = jsonData[0].first_name
+        
+        
+    </script>
+    
+</body>
+</html>
