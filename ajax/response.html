@@ -1,0 +1,36 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Response</title>
+</head>
+
+<body>
+
+    <p id="demo"></p>
+
+
+    <script>
+        /*
+        Server Response Property
+        ----
+
+        There are two types of response format; responseText and responseXML
+
+        reponseText comes as java script string
+        responseXML comes as a built in XML parser
+        */
+
+        let API_URL = "http://someurl.com"
+        let xhttp = new XMLHttpRequest()
+        xhttp.open("GET", API_URL)
+        xhttp.onload = function () {
+            document.getElementById("demo").innerHTML = xhttp.reponseText
+        }
+
+    </script>
+</body>
+
+</html>
