@@ -1,0 +1,54 @@
+<!--  
+    This example demonstrates
+        1. Multiple call back funcions
+            Note how the same function can be used to pass different url and their callback function
+
+-->
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XML Http</title>
+</head>
+
+<body>
+    <p id="name"></p>
+    <p id="email"></p>
+
+
+    <script>
+
+        let EMP_API_URL = "https://reqres.in/api/users?page=1"
+
+        loadEmp(EMP_API_URL, dispEmpEmail)
+        loadEmp(EMP_API_URL, dispEmpName)
+
+        function loadEmp(url, cFunction) {
+            let xhttp = new XMLHttpRequest()
+            xhttp.open(url)
+            xhttp.onload(cFunction(this))
+            xhttp.send()
+        }
+
+        function dispEmpEmail(xhttp){
+            var jsonResponse = JSON.parse(xhttp.response);
+            var empData = jsonResponse.data;
+            var email = document.getElementById("email")
+            email.innerText = empData.email
+        }
+
+        function dispEmpName(xhttp){
+            var jsonResponse = JSON.parse(xhttp.respose)
+            var empDat = jsonResponse.data
+            var name = document.getElementById("name")
+            name.innerText = empDat.first_name + " " + empDat.last_name
+        }
+
+    </script>
+
+</body>
+
+</html>
