@@ -23,30 +23,32 @@
 
         let EMP_API_URL = "https://reqres.in/api/users?page=1"
 
-        loadEmp(EMP_API_URL, dispEmpEmail)
-        loadEmp(EMP_API_URL, dispEmpName)
-
         function loadEmp(url, cFunction) {
             let xhttp = new XMLHttpRequest()
-            xhttp.open(url)
-            xhttp.onload(cFunction(this))
+            xhttp.open("GET", url)
+            xhttp.onload = function () {
+                cFunction(this);
+            }
             xhttp.send()
         }
 
-        function dispEmpEmail(xhttp){
+        function dispEmpEmail(xhttp) {
             var jsonResponse = JSON.parse(xhttp.response);
-            var empData = jsonResponse.data;
+            var empData = jsonResponse.data[0];
             var email = document.getElementById("email")
             email.innerText = empData.email
         }
 
-        function dispEmpName(xhttp){
-            var jsonResponse = JSON.parse(xhttp.respose)
-            var empDat = jsonResponse.data
+        function dispEmpName(xhttp) {
+            var jsonResponse = JSON.parse(xhttp.response)
+            var empDat = jsonResponse.data[0]
             var name = document.getElementById("name")
             name.innerText = empDat.first_name + " " + empDat.last_name
         }
 
+
+        loadEmp(EMP_API_URL, dispEmpEmail)
+        loadEmp(EMP_API_URL, dispEmpName)
     </script>
 
 </body>
