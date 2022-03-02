@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX XML</title>
+</head>
+<body>
+
+    <div id="demo"></div>
+    <script>
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function () {
+            const xmlDoc = this.responseXML;
+            console.log(xmlDoc);
+            const x = xmlDoc.getElementsByName("CD");
+            console.log("Hello");
+            let table = "<tr><th>Artist</th></tr>"
+            console.log(x);
+            for (let i = 0; i < x.length; i++) {
+                table += "<tr><td>" + 
+                    x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
+                    "</td><td>" + 
+                    x[i]
+            }
+
+            document.getElementById("demo").innerHTML = table
+        }
+        xhttp.open("GET","cd_catalog.xml")
+        xhttp.send()
+    </script>
+</body>
+</html>

@@ -10,6 +10,8 @@
 <body>
 
     <p id="demo"></p>
+    <p id="demo1"></p>
+    <p id="demo2"></p>
 
 
     <script>
@@ -23,12 +25,44 @@
         responseXML comes as a built in XML parser
         */
 
-        let API_URL = "http://someurl.com"
-        let xhttp = new XMLHttpRequest()
-        xhttp.open("GET", API_URL)
+        let API_URL = "hello.html"
+        const xhttp = new XMLHttpRequest()
         xhttp.onload = function () {
             document.getElementById("demo").innerHTML = xhttp.reponseText
         }
+        xhttp.open("GET", API_URL)
+        xhttp.send()
+
+
+
+        /*
+        Server Response Methods
+        ----
+
+        The getAllResponseHeaders() method returns all header information from the server response
+        */
+
+        const xhttp1 = new XMLHttpRequest();
+        xhttp1.onload = function () {
+            document.getElementById("demo1").innerHTML = this.getAllResponseHeaders();
+        }
+        xhttp1.open("GET", API_URL);
+        xhttp1.send();
+
+        /*
+        The getResponseHeader() method returns specific header information from the server response.
+        */
+
+
+        const xhttp2 = new XMLHttpRequest();
+        xhttp2.onload = function () {
+            document.getElementById("demo2").innerHTML = 
+                this.getResponseHeader("Last-Modified");
+        }
+        xhttp2.open("GET", API_URL);
+        xhttp2.send();
+
+
 
     </script>
 </body>
