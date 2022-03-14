@@ -2,7 +2,7 @@
 All the things regarding javascript :)
 
 ##  Currently
-[AJAX - Server Response](https://www.w3schools.com/js/js_ajax_http_response.asp)
+[JSON Syntax](https://www.w3schools.com/js/js_json_syntax.asp)
 
 # Websites
 [JavaScript Pattern](https://www.patterns.dev/posts/classic-design-patterns/#introduction)

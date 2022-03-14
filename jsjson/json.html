@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON</title>
+</head>
+<body>
+    <script>
+
+        /*
+            JSON - Introduction
+        */
+        let jsonSample = '{"name":"John", "age":30 , "car":null}';
+        let jsonObj = JSON.parse(jsonSample)
+        console.log(jsonSample);
+
+
+        /*
+            JSON Syntax
+
+            JSON syntax is derived from JavaScript object notation syntax:
+            * Data is in name/value pairs
+            * Data is separated by commas
+            * Curly braces hold objects
+            * Square brackets hold arrays
+        
+
+            JSON data is written as name/value pairs (aka key/value pairs)
+
+            A name/value pair consists of a field name (in double quotes), followed by a colon, followed by a value
+
+
+        */
+
+
+        let employee = {name: "Sifat"}
+        console.log(employee);
+
+        const person = {name:"Sifat", age: 31, city: "New York"}
+        console.log(person);
+    </script>
+    
+</body>
+</html>
