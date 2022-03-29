@@ -20,29 +20,24 @@ class Board extends React.Component {
     }
 
 
-
     render() {
+        var rows = []
+        let squareCounter = 0 ;
+        for (let j = 0; j < 3 ; j++) {
+            let row = [] // empty array of columns
+            for (let i = 0; i < 3; i++) {
+                row.push(this.renderSquare(squareCounter))
+                squareCounter ++;
+            }
+            rows.push(<div className='board-row'>{row}</div>)
+        }
         return (
-            <div>
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
-                </div>
-            </div>
-        );
+            <div>{rows}</div>
+        )
     }
+
 }
+
 
 class Game extends React.Component {
     constructor(props) {
@@ -96,7 +91,7 @@ class Game extends React.Component {
                 'Go to game start';
             return (
                 <tr key={move}>
-                    <td>
+                    <td className={move === this.state.stepNumber ? 'isSelected' : ''}>
                         {move}
                     </td>
                     <td><button onClick={() => this.jumpTo(move)}>{desc}</button></td>
