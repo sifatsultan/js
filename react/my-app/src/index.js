@@ -98,6 +98,15 @@ class Game extends React.Component {
             stepNumber: step,
             xIsNext: (step % 2) === 0,
         });
+
+        // undo the color
+        var squares = document.getElementsByClassName("square")
+
+        for (let i = 0; i < squares.length; i++) {
+            const square = squares[i];
+            square.setAttribute("class","square")
+
+        }
     }
 
     render() {
@@ -126,6 +135,10 @@ class Game extends React.Component {
 
         if (winner) {
             status = 'Winner' + winner;
+
+            // high light the three boxes that have won
+
+
         } else {
             status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
@@ -186,7 +199,21 @@ function calculateWinner(squares) {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+
+            // select the cells corresponding to [a,b,c]
+            // get all the buttons
+            // you have an array of buttons
+            // select the line combination
+            // chanage its style
+
+            var buttons = document.getElementsByTagName('button');
+            buttons[a].setAttribute("class", "square square-bold")
+            buttons[b].setAttribute("class", "square square-bold")
+            buttons[c].setAttribute("class", "square square-bold")
+
+
             return squares[a];
+
         }
     }
     return null;

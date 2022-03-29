@@ -36,6 +36,11 @@ ol, ul {
   outline: none;
 }
 
+.square-bold{
+  background: lightgreen;
+  border: 1px solid #999;  
+}
+
 .kbd-navigation .square:focus {
   background: #ddd;
 }
