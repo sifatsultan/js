@@ -47,19 +47,27 @@ class Game extends React.Component {
                 squares: Array(9).fill(null),
             }],
             stepNumber: 0,
+            isDescending: false,
             xIsNext: true,
         };
 
     }
 
-    sortTable(table_id, sortColumn) {
+    sortTable(table_id, sortColumn, isDescending) {
         var tableData = document.getElementById(table_id).getElementsByTagName('tbody').item(0);
         var rowData = tableData.getElementsByTagName('tr');
         for (var i = 0; i < rowData.length - 1; i++) {
             for (var j = 0; j < rowData.length - (i + 1); j++) {
-                if (Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) < Number(rowData.item(j + 1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))) {
-                    tableData.insertBefore(rowData.item(j + 1), rowData.item(j));
+                if (isDescending) {
+                    if (Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) < Number(rowData.item(j + 1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))) {
+                        tableData.insertBefore(rowData.item(j + 1), rowData.item(j));
+                    }
+                } else {
+                    if (Number(rowData.item(j).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, "")) > Number(rowData.item(j + 1).getElementsByTagName('td').item(sortColumn).innerHTML.replace(/[^0-9\.]+/g, ""))) {
+                        tableData.insertBefore(rowData.item(j + 1), rowData.item(j));
+                    }
                 }
+
             }
         }
     }
@@ -136,7 +144,13 @@ class Game extends React.Component {
                     <table id="table-move">
                         <thead>
                             <tr>
-                                <th onClick={() => { this.sortTable("table-move", 0) }}>Step</th>
+                                <th onClick={() => {
+                                    this.setState({
+                                        isDescending: !this.state.isDescending
+                                    })
+                                    this.sortTable("table-move", 0, this.state.isDescending);
+
+                                }}>Step</th>
                                 <th>Jump</th>
                             </tr>
                         </thead>
