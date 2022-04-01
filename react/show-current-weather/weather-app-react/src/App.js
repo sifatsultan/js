@@ -24,7 +24,6 @@ class CityCard extends React.Component {
       <div className="city">
         <p className="city-temp">{this.props.temp}</p>
         <p className="city-name">{this.props.cityName}</p>
-        <img className="city-icon" src={this.props.icon} />
       </div>
     )
 
@@ -74,48 +73,30 @@ class App extends React.Component {
         alert("Oops, there seems to be an errorr");
         throw new Error("You have an error")
       })
-      .then((weatherObj) => {
-        console.log(weatherObj);
+      .then((weatherObj) => {        
+        var citiesObj = this.state.cities;
+        citiesObj.push({
+          location: location,
+          weather: weatherObj,
+        });
         this.setState({
-          weather: weatherObj
+          cities: citiesObj
         })
       })
-      .then(() => {
-        // fetch photos
-        fetch(
-          `https://api.unsplash.com/search/photos?query=${location}&client_id=D28SLZa0lvwnvQtScVBZH57EiTX6LAu428df3SZotp0`
-        )
-          .then((res) => {
-            if (res.ok) {
-              console.log(res.status);
-              return res.json();
-            }
-            else {
-              if (res.status === 404) {
-                return alert("Oops, there seems to be an error! (wrong locaiton)")
-              }
-            }
-            alert("Oops, there seems to be an errorr");
-            throw new Error("You have an error")
-          })
-          .then((photosObj) => {
+      .catch((error) => { console.log(error) })}
 
-            this.state.cities.push({
-              location: location,
-              weather: this.state.weather,
-              photos: photosObj
-            })
 
-          })
-          .catch((error) => { console.log(error) })
+
+  renderCityCards(){  
+
+    var rows = []
+    this.state.cities
+      .map((city)=>{
+        rows.push(<CityCard cityName={city.location} temp={city.weather.main.temp} icon={iconRainy} backgroundImage={city.photo}></CityCard>)
       })
-      .catch((error) => { console.log(error) })
-
-
-
-
+    
+      return  <ul className="cities">{rows}</ul>
   }
-
 
   submitCity() {
 
@@ -146,17 +127,7 @@ class App extends React.Component {
         </section>
         <section className="ajax-section">
           <div className="container">
-            <ul className="cities">
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconRainy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'Dhaka'} temp={19} icon={iconCloudy} />
-              <CityCard cityName={'London'} temp={30} icon={iconSunny} />
-            </ul>
+            {this.renderCityCards()}
 
           </div>
 
