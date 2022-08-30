@@ -32,6 +32,7 @@
     "npm-shrinkwrap": "^6.1.0",
     "remarkable": "^2.0.1",
     "time-grunt": "^2.0.0",
+    "xhr2": "^0.2.1",
     "xmlhttprequest": "^1.8.0"
   }
 }
